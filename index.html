@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffe0f0 50%, #ffd5e8 100%);
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: fixed;
+            font-size: 30px;
+            opacity: 0;
+            animation: floatHeart 6s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) translateX(var(--curve-x)) rotate(360deg) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Page 1 Styles */
+        .page1-content {
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 6px solid #ff69b4;
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 50px rgba(255, 105, 180, 0.6);
+            }
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .page1-content h1 {
+            font-size: 48px;
+            color: #ff1493;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .page1-content p {
+            font-size: 22px;
+            color: #c71585;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* Button Styles */
+        .btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 20, 147, 0.6);
+        }
+
+        /* Page 2 Styles */
+        .page2-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .page2-content h2 {
+            font-size: 42px;
+            color: #ff1493;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .romantic-message {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 35px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            border: 3px solid #ffb6c1;
+        }
+
+        .romantic-message p {
+            font-size: 20px;
+            color: #c71585;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .photo-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+            transition: transform 0.3s ease;
+            aspect-ratio: 1;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        /* Page 3 Styles */
+        .page3-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .page3-content h2 {
+            font-size: 42px;
+            color: #ff1493;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .childhood-section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 35px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            border: 3px solid #ffb6c1;
+        }
+
+        .childhood-section p {
+            font-size: 20px;
+            color: #c71585;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .childhood-photos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .childhood-photo {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+            transition: transform 0.3s ease;
+            aspect-ratio: 4/3;
+        }
+
+        .childhood-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .childhood-photo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Page 4 Styles */
+        .page4-content {
+            max-width: 700px;
+            text-align: center;
+        }
+
+        .wishes-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 15px 50px rgba(255, 105, 180, 0.3);
+            border: 4px solid #ff69b4;
+        }
+
+        .wishes-card h2 {
+            font-size: 46px;
+            color: #ff1493;
+            margin-bottom: 35px;
+            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+        }
+
+        .wish-item {
+            background: linear-gradient(135deg, #ffe0f0, #ffeef8);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            border-left: 6px solid #ff69b4;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .wish-item:hover {
+            transform: translateX(10px);
+        }
+
+        .wish-item h3 {
+            color: #ff1493;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .wish-item p {
+            color: #c71585;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .final-message {
+            margin-top: 40px;
+            font-size: 24px;
+            color: #ff1493;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .photo-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .childhood-photos {
+                grid-template-columns: 1fr;
+            }
+
+            .page1-content h1 {
+                font-size: 36px;
+            }
+
+            .btn {
+                padding: 15px 35px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container"></div>
+
+    <!-- Page 1: Welcome -->
+    <div class="page active" id="page1">
+        <div class="page1-content">
+            <div class="profile-container">
+                <img src="profile.jpeg" alt="Profile" class="profile-img">
+            </div>
+            <h1>Happy Birthday! 🎂</h1>
+            <p>To my dearest best friend, today is your special day!<br>
+            Get ready for a journey through our beautiful memories together 💕</p>
+            <button class="btn" onclick="goToPage(2)">Open Your Surprise 💖</button>
+        </div>
+    </div>
+
+    <!-- Page 2: Romantic Wishes -->
+    <div class="page" id="page2">
+        <div class="page2-content">
+            <h2>My Romantic Wishes For You 💕</h2>
+            <div class="romantic-message">
+                <p>To my beautiful best friend,</p>
+                <p>Every moment with you is like a dream come true. Your smile lights up my darkest days, and your laughter is the most beautiful melody I've ever heard.</p>
+                <p>On this special day, I want you to know how incredibly blessed I am to have you in my life. You're not just my best friend, you're my soulmate, my confidant, and my greatest treasure.</p>
+                <p>May this year bring you endless joy, boundless love, and all the happiness your heart can hold. You deserve the world and so much more! 💝</p>
+            </div>
+
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <img src="wedding.jpg" alt="Special Moment">
+                </div>
+                <div class="photo-item">
+                    <img src="profile.jpg" alt="You & Me">
+                </div>
+                <div class="photo-item">
+                    <img src="old.jpg" alt="Back Then">
+                </div>
+            </div>
+
+            <button class="btn" onclick="goToPage(3)">Continue the Journey 💫</button>
+        </div>
+    </div>
+
+    <!-- Page 3: Childhood Memories -->
+    <div class="page" id="page3">
+        <div class="page3-content">
+            <h2>Our Beautiful Journey 🌸</h2>
+            <div class="childhood-section">
+                <p>Looking back at where we started, from innocent kids to the amazing people we are today...</p>
+                <p>These memories remind me of how far we've come together. Through every laugh, every tear, every adventure - you've been there, and I'm forever grateful.</p>
+                <p>Our friendship has grown stronger with each passing year, and I can't wait to create more beautiful memories with you! 🌟</p>
+            </div>
+
+            <div class="childhood-photos">
+                <div class="childhood-photo">
+                    <img src="old.jpg" alt="Childhood">
+                </div>
+                <div class="childhood-photo">
+                    <img src="profile.jpg" alt="Growing Up">
+                </div>
+            </div>
+
+            <button class="btn" onclick="goToPage(4)" style="margin-top: 40px;">See My Wishes For You 🌟</button>
+        </div>
+    </div>
+
+    <!-- Page 4: Wishes Card -->
+    <div class="page" id="page4">
+        <div class="page4-content">
+            <div class="wishes-card">
+                <h2>My Wishes For Your Next Year 🎁</h2>
+
+                <div class="wish-item">
+                    <h3>💪 Health & Wellness</h3>
+                    <p>May you be blessed with perfect health, boundless energy, and the strength to chase all your dreams. Stay strong and beautiful, inside and out!</p>
+                </div>
+
+                <div class="wish-item">
+                    <h3>✨ Success & Achievement</h3>
+                    <p>May this year bring you incredible success in everything you do. May all your goals become reality and every door of opportunity open for you!</p>
+                </div>
+
+                <div class="wish-item">
+                    <h3>💝 Love & Happiness</h3>
+                    <p>May your heart overflow with love, joy, and endless happiness. May you be surrounded by people who cherish you as much as I do!</p>
+                </div>
+
+                <div class="wish-item">
+                    <h3>🌈 Adventures & Memories</h3>
+                    <p>May we create a thousand more beautiful memories together. May this year be filled with exciting adventures and unforgettable moments!</p>
+                </div>
+
+                <div class="wish-item">
+                    <h3>🌟 Dreams Come True</h3>
+                    <p>May every wish you make, every dream you have, and every hope in your heart come true. You deserve all the magic in the world!</p>
+                </div>
+
+                <div class="final-message">
+                    Forever grateful to call you my best friend! 💖<br>
+                    Happy Birthday, my dear! 🎂✨
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.setProperty('--curve-x', (Math.random() - 0.5) * 200 + 'px');
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('hearts-container').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 800);
+
+        // Initialize some hearts
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+
+        // Page navigation
+        function goToPage(pageNum) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById('page' + pageNum).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Add sparkle effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                const sparkle = document.createElement('div');
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.fontSize = '20px';
+                sparkle.innerHTML = '✨';
+                sparkle.style.animation = 'fadeOut 1s ease-out forwards';
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; transform: translateY(0); }
+                to { opacity: 0; transform: translateY(-30px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
