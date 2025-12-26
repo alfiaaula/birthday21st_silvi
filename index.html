@@ -90,6 +90,7 @@
             border: 6px solid #ff69b4;
             box-shadow: 0 10px 40px rgba(255, 105, 180, 0.4);
             animation: pulse 2s ease-in-out infinite;
+            background: linear-gradient(135deg, #ffc0cb, #ff69b4);
         }
 
         @keyframes pulse {
@@ -107,6 +108,24 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+        }
+
+        .profile-img.error {
+            display: none;
+        }
+
+        .img-placeholder {
+            display: none;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+        }
+
+        .img-placeholder.show {
+            display: flex;
         }
 
         .page1-content h1 {
@@ -188,12 +207,31 @@
             box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
             transition: transform 0.3s ease;
             aspect-ratio: 1;
+            background: linear-gradient(135deg, #ffc0cb, #ff69b4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .photo-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+        }
+
+        .photo-item img.error {
+            display: none;
+        }
+
+        .photo-placeholder {
+            display: none;
+            font-size: 40px;
+            color: white;
+        }
+
+        .photo-placeholder.show {
+            display: block;
         }
 
         .photo-item:hover {
@@ -242,12 +280,21 @@
             box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
             transition: transform 0.3s ease;
             aspect-ratio: 4/3;
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .childhood-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+        }
+
+        .childhood-photo img.error {
+            display: none;
         }
 
         .childhood-photo:hover {
@@ -337,7 +384,8 @@
     <div class="page active" id="page1">
         <div class="page1-content">
             <div class="profile-container">
-                <img src="profile.jpeg" alt="Profile" class="profile-img">
+                <img src="profile.jpeg" alt="Profile" class="profile-img" onerror="handleImageError(this, '👸')">
+                <div class="img-placeholder">👸</div>
             </div>
             <h1>Happy Birthday! 🎂</h1>
             <p>To my dearest best friend, today is your special day!<br>
@@ -359,13 +407,16 @@
 
             <div class="photo-gallery">
                 <div class="photo-item">
-                    <img src="wedding.jpg" alt="Special Moment">
+                    <img src="deal.jpeg" alt="Special Moment" onerror="handleImageError(this, '📸')">
+                    <div class="photo-placeholder">📸</div>
                 </div>
                 <div class="photo-item">
-                    <img src="profile.jpg" alt="You & Me">
+                    <img src="ramadhan.jpeg" alt="Ramadhan Time" onerror="handleImageError(this, '💕')">
+                    <div class="photo-placeholder">💕</div>
                 </div>
                 <div class="photo-item">
-                    <img src="old.jpg" alt="Back Then">
+                    <img src="iftar.jpeg" alt="Back Then" onerror="handleImageError(this, '✨')">
+                    <div class="photo-placeholder">✨</div>
                 </div>
             </div>
 
@@ -378,17 +429,19 @@
         <div class="page3-content">
             <h2>Our Beautiful Journey 🌸</h2>
             <div class="childhood-section">
-                <p>Looking back at where we started, from innocent kids to the amazing people we are today...</p>
-                <p>These memories remind me of how far we've come together. Through every laugh, every tear, every adventure - you've been there, and I'm forever grateful.</p>
-                <p>Our friendship has grown stronger with each passing year, and I can't wait to create more beautiful memories with you! 🌟</p>
+                <p>Mengenang kembali perjalanan kita dari awal, dari anak-anak yang polos hingga menjadi pribadi yang luar biasa seperti sekarang...</p>
+                <p>Kenangan ini mengingatkan aku betapa jauhnya kita telah melangkah bersama. Melalui setiap tawa, setiap air mata, setiap petualangan - kamu selalu ada di sana, dan kita selamanya bersyukur.</p>
+                <p>Persahabatan kita semakin kuat setiap tahunnya, dan aku tak sabar untuk menciptakan lebih banyak kenangan indah bersamamu! 🌟</p>
             </div>
 
             <div class="childhood-photos">
                 <div class="childhood-photo">
-                    <img src="old.jpg" alt="Childhood">
+                    <img src="old.jpeg" alt="Childhood" onerror="handleImageError(this, '👶💕')">
+                    <div class="photo-placeholder">👶💕</div>
                 </div>
                 <div class="childhood-photo">
-                    <img src="profile.jpg" alt="Growing Up">
+                    <img src="wedding.jpeg" alt="Growing Up" onerror="handleImageError(this, '🎈🎉')">
+                    <div class="photo-placeholder">🎈🎉</div>
                 </div>
             </div>
 
@@ -400,16 +453,16 @@
     <div class="page" id="page4">
         <div class="page4-content">
             <div class="wishes-card">
-                <h2>My Wishes For Your Next Year 🎁</h2>
+                <h2>See Our Hopes For You Next Year 🎁</h2>
 
                 <div class="wish-item">
                     <h3>💪 Health & Wellness</h3>
-                    <p>May you be blessed with perfect health, boundless energy, and the strength to chase all your dreams. Stay strong and beautiful, inside and out!</p>
+                    <p>Semoga Anda diberkahi dengan kesehatan yang sempurna, energi yang tak terbatas, dan kekuatan untuk mengejar semua impian Anda. Tetaplah kuat dan cantik, luar dan dalam!</p>
                 </div>
 
                 <div class="wish-item">
                     <h3>✨ Success & Achievement</h3>
-                    <p>May this year bring you incredible success in everything you do. May all your goals become reality and every door of opportunity open for you!</p>
+                    <p>Semoga tahun ini membawa kesuksesan luar biasa dalam segala hal yang Anda lakukan. Semoga semua tujuan Anda menjadi kenyataan dan setiap pintu kesempatan terbuka untuk Anda!</p>
                 </div>
 
                 <div class="wish-item">
@@ -424,18 +477,60 @@
 
                 <div class="wish-item">
                     <h3>🌟 Dreams Come True</h3>
-                    <p>May every wish you make, every dream you have, and every hope in your heart come true. You deserve all the magic in the world!</p>
+                    <p>Semoga setiap keinginanmu, setiap mimpimu, dan setiap harapan di hatimu menjadi kenyataan. Kamu pantas mendapatkan semua keajaiban di dunia!</p>
                 </div>
 
                 <div class="final-message">
                     Forever grateful to call you my best friend! 💖<br>
-                    Happy Birthday, my dear! 🎂✨
+                    Happy Birthday, my dear!<br>
+                    from wacana 🎂✨
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Handle image loading errors
+        function handleImageError(img, emoji) {
+            img.classList.add('error');
+            const placeholder = img.nextElementSibling;
+            if (placeholder && placeholder.classList.contains('img-placeholder')) {
+                placeholder.innerHTML = emoji;
+                placeholder.classList.add('show');
+            } else if (placeholder && placeholder.classList.contains('photo-placeholder')) {
+                placeholder.classList.add('show');
+            }
+        }
+
+        // Preload images with multiple fallbacks
+        function preloadImage(src) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(src);
+                img.onerror = () => {
+                    // Try with different extensions
+                    const alternatives = [
+                        src.replace('.jpeg', '.jpg'),
+                        src.replace('.jpg', '.jpeg'),
+                        src.replace('.jpeg', '.JPG'),
+                        src.replace('.jpeg', '.JPEG'),
+                        src.replace('.jpg', '.JPG')
+                    ];
+                    
+                    // Try first alternative
+                    if (alternatives[0] !== src) {
+                        const altImg = new Image();
+                        altImg.onload = () => resolve(alternatives[0]);
+                        altImg.onerror = () => reject(src);
+                        altImg.src = alternatives[0];
+                    } else {
+                        reject(src);
+                    }
+                };
+                img.src = src;
+            });
+        }
+
         // Create floating hearts
         function createHeart() {
             const heart = document.createElement('div');
@@ -492,6 +587,16 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Log image loading for debugging
+        window.addEventListener('load', () => {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (img.complete && img.naturalHeight === 0) {
+                    console.log('Failed to load:', img.src);
+                }
+            });
+        });
     </script>
 </body>
 </html>
